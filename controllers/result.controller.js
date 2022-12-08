@@ -14,7 +14,7 @@ const getById = async (id) => {
 };
 
 const add = async (data) => {
-    const [req, err] = await db.query("INSERT INTO results (date, score_home, score_ext, team_home_id, team_ext_id, logo_home_id, logo_ext_id) VALUES (?,?,?,?,?,?,?)", [data.date, data.score_home, data.score_ext, data.team_home_id, data.team_ext_id, data.logo_home_id, data.logo_ext_id]);
+    const [req, err] = await db.query("INSERT INTO results (date, score_home, score_ext, team_home_id, team_ext_id) VALUES (?,?,?,?,?)", [data.date, data.score_home, data.score_ext, data.team_home_id, data.team_ext_id]);
     if (!req) {
         return null;
     }
@@ -27,15 +27,13 @@ const update = async (id, data) => {
     if (!result) {
         return null;
     } else {
-        const [req, err] = await db.query("UPDATE results SET result_name = ?, logo = ? WHERE id = ? LIMIT 1", 
+        const [req, err] = await db.query("UPDATE results SET date = ?, score_home = ?, score_ext = ?, team_home_id = ?, team_ext_id = ? WHERE id = ? LIMIT 1", 
         [
             data.date || result.date,
             data.score_home || result.score_home,
             data.score_ext || result.score_ext,
             data.team_home_id || result.team_home_id,
             data.team_ext_id || result.team_ext_id,
-            data.logo_home_id || result.logo_home_id,
-            data.logo_ext_id || result.logo_ext_id,
             id
         ]);
         if (!req) {
