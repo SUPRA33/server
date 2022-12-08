@@ -14,7 +14,7 @@ const getById = async (id) => {
 };
 
 const add = async (data) => {
-    const [req, err] = await db.query("INSERT INTO sponsors (sponsor_name, description, link) VALUES (?,?,?)", [data.sponsor_name, data.description, data.link]);
+    const [req, err] = await db.query("INSERT INTO sponsors (sponsor_name, description, link, logo) VALUES (?,?,?,?)", [data.sponsor_name, data.description, data.link, data.logo]);
     if (!req) {
         return null;
     }

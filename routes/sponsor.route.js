@@ -1,5 +1,8 @@
 const express = require('express');
 const sponsorController = require('../controllers/sponsor.controller');
+const sponsorSchema = require('../models/sponsor');
+const validator = require('../utils/validator');
+const authValidator = require('../utils/auth');
 
 const router = express.Router();
 
@@ -11,7 +14,7 @@ router.route('/')
         }
         res.status(200).json(sponsors);
     })
-    .put(async (req, res) => {
+    .put(authValidator.isAdmin(), validator(sponsorSchema), async (req, res) => {
         const new_sponsor = await sponsorController.add(req.body);
 
         if (!new_sponsor) {
@@ -29,14 +32,14 @@ router.route('/:id')
         }
         res.status(200).json(sponsor);
     })
-    .patch(async (req, res) => {
+    .patch(authValidator.isAdmin(), validator(sponsorSchema), async (req, res) => {
         const sponsor = await sponsorController.update(req.params.id, req.body);
         if (!sponsor) {
             res.status(404).json();
         }
         res.status(202).json(sponsor);
     })
-    .delete(async (req, res) => {
+    .delete(authValidator.isAdmin(), async (req, res) => {
         const sponsor = await sponsorController.remove(req.params.id);
         if (!sponsor) {
             res.status(404).json();
@@ -44,6 +47,5 @@ router.route('/:id')
         res.status(202).json();
     })
 ;
-
 
 module.exports = router;

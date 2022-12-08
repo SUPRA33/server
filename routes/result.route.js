@@ -1,5 +1,8 @@
 const express = require('express');
 const resultController = require('../controllers/result.controller');
+const resultSchema = require('../models/result');
+const validator = require('../utils/validator');
+const authValidator = require('../utils/auth');
 
 const router = express.Router();
 
@@ -11,7 +14,7 @@ router.route('/')
         }
         res.status(200).json(results);
     })
-    .put(async (req, res) => {
+    .put(authValidator.isAdmin(), validator(resultSchema), async (req, res) => {
         const new_result = await resultController.add(req.body);
 
         if (!new_result) {
@@ -29,14 +32,14 @@ router.route('/:id')
         }
         res.status(200).json(result);
     })
-    .patch(async (req, res) => {
+    .patch(authValidator.isAdmin(), validator(resultSchema), async (req, res) => {
         const result = await resultController.update(req.params.id, req.body);
         if (!result) {
             res.status(404).json();
         }
         res.status(202).json(result);
     })
-    .delete(async (req, res) => {
+    .delete(authValidator.isAdmin(), async (req, res) => {
         const result = await resultController.remove(req.params.id);
         if (!result) {
             res.status(404).json();

@@ -4,5 +4,7 @@
     "mysqlHost": "127.0.0.1",
     "mysqlUsername": "root",
     "mysqlPassword": "",
-    "mysqlDatabase": "supra_esport"
+    "mysqlDatabase": "supra_esport",
+    "jwtPassword": "eifuaehfhbjeg6254g5zrgrzgre15rg",
+    "jwtExpireLength": "1 hour"
 }
