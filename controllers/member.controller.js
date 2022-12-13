@@ -27,7 +27,7 @@ const update = async (id, data) => {
     if (!member) {
         return null;
     } else {
-        const [req, err] = await db.query("civility = ?, last_name = ?, first_name = ?, nickname = ?, nationality = ?, date_birth = ?, city_birth = ?, email = ?, adress_1 = ?, adress_2 = ?, city = ?, postal_code = ?, country = ?, image = ?, team_id = ?, category = ?, role = ? WHERE id = ? LIMIT 1", 
+        const [req, err] = await db.query("UPDATE members SET civility = ?, last_name = ?, first_name = ?, nickname = ?, nationality = ?, date_birth = ?, city_birth = ?, email = ?, adress_1 = ?, adress_2 = ?, city = ?, postal_code = ?, country = ?, image = ?, team_id = ?, category = ?, role = ? WHERE id = ? LIMIT 1", 
         [
             data.civility || member.civility,
             data.last_name || member.last_name,

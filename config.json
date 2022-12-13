@@ -6,5 +6,5 @@
     "mysqlPassword": "",
     "mysqlDatabase": "supra_esport",
     "jwtPassword": "eifuaehfhbjeg6254g5zrgrzgre15rg",
-    "jwtExpireLength": "1 hour"
+    "jwtExpireLength": "3 hours"
 }
