@@ -7,12 +7,20 @@ const authValidator = require('../utils/auth');
 const router = express.Router();
 
 router.route('/')
-    .get(authValidator.isAdmin(), async (req, res) => {
-        const members = await memberController.getAll();
-        if (!members) {
-            res.status(404).json();
+    .get(async (req, res) => {
+        if (req.headers.auth && req.headers.auth.role === 'admin') {
+            const members = await memberController.getAll();
+            if (!members) {
+                res.status(404).json();
+            }
+            res.status(200).json(members);
+        } else {
+            const members = await memberController.getForUsers();
+            if (!members) {
+                res.status(404).json();
+            }
+            res.status(200).json(members);
         }
-        res.status(200).json(members);
     })
     .put(authValidator.isAdmin(), validator(memberSchema), async (req, res) => {
         const new_member = await memberController.add(req.body);

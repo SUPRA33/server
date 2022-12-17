@@ -5,6 +5,11 @@ const getAll = async () => {
     return members;
 };
 
+const getForUsers = async () => {
+    const [members, err] = await db.query("SELECT nickname, image, category, role FROM members");
+    return members;
+}
+
 const getById = async (id) => {
     const [member, err] = await db.query("SELECT * FROM members WHERE id = ?", [id]);
     if (!member) {
@@ -65,6 +70,7 @@ const remove = async (id) => {
 
 module.exports = {
     getAll,
+    getForUsers,
     getById,
     add,
     update,
