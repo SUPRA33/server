@@ -6,5 +6,7 @@
     "mysqlPassword": "",
     "mysqlDatabase": "supra_esport",
     "jwtPassword": "eifuaehfhbjeg6254g5zrgrzgre15rg",
-    "jwtExpireLength": "3 hours"
+    "jwtExpireLength": "3 hours",
+    "mailerAdress": "contact.supra.esport@gmail.com",
+    "mailerPassword": "qbjrxnsjztbkemet"
 }

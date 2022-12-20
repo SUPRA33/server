@@ -14,7 +14,7 @@ const getById = async (id) => {
 };
 
 const add = async (data) => {
-    const [req, err] = await db.query("INSERT INTO contacts (last_name, first_name, email, message_object, message) VALUES (?,?,?,?,?)", [data.last_name, data.first_name, data.email, data.message_object ,data.message]);
+    const [req, err] = await db.query("INSERT INTO contacts (last_name, first_name, phone, email, message_object, message) VALUES (?,?,?,?,?)", [data.last_name, data.first_name, data.phone, data.email, data.message_object ,data.message]);
     if (!req) {
         return null;
     }
