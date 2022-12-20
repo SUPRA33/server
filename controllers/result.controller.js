@@ -1,7 +1,7 @@
 const db = require('../utils/db');
 
 const getAll = async () => {
-    const [results, err] = await db.query("SELECT * FROM results");
+    const [results, err] = await db.query("SELECT results.id, date, score_home, score_ext, home_team.logo as home_team_logo, home_team.team_name as home_team_name, ext_team.logo as ext_team_logo, ext_team.team_name as ext_team_name FROM results LEFT JOIN teams as home_team ON results.team_home_id = home_team.id LEFT JOIN teams as ext_team ON results.team_ext_id = ext_team.id");
     return results;
 };
 

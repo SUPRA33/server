@@ -18,7 +18,7 @@ router.route('/')
             const token = jwt.sign({
                 id: user.id,
                 email: user.email,
-                roles: user.role
+                role: user.role
             }, config.jwtPassword, { expiresIn: config.jwtExpireLength });
     
             res.json({

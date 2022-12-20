@@ -23,4 +23,6 @@ const isAdmin = () => {
     }
 };
 
-module.exports = { isAdmin };
+module.exports = {
+    isAdmin,
+};
