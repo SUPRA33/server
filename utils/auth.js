@@ -15,7 +15,7 @@ const isAdmin = () => {
                 res.status(401).json({message: "Token invalide"});
             }
             else {
-                decodedToken.role === 'admin'
+                decodedToken.role === "admin";
                 req.auth = decodedToken;
                 next();
             }  

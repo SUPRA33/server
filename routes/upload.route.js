@@ -1,8 +1,4 @@
 const express = require('express');
-const teamController = require('../controllers/team.controller');
-const teamSchema = require('../models/team');
-const validator = require('../utils/validator');
-const authValidator = require('../utils/auth');
 
 const router = express.Router();
 
