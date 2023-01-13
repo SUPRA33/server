@@ -40,10 +40,8 @@ router.route('/')
             }
             res.status(200).json(members);
         }
-
-
-        
     })
+    
     .put(authValidator.isAdmin(), validator(memberSchema), async (req, res) => {
         const new_member = await memberController.add(req.body);
 

@@ -25,6 +25,14 @@ router.route('/')
         res.status(201).json(new_contact);
     })
     .post(validator(contactSchema), async (req, res) => {
+
+        const new_contact = await contactController.add(req.body);
+
+        if (!new_contact) {
+            res.status(404).json();
+        }
+        res.status(201).json(new_contact);
+        
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465,
@@ -38,8 +46,11 @@ router.route('/')
         const mailOptions = {
         from: 'Nodemailer ' + config.mailerAdress,
         to: config.mailerAdress,
-        subject: req.body.last_name + ' ' + req.body.first_name + ' ; ' + req.body.email,
-        html: req.body.message_object + ' : ' + req.body.message + ', +33' + req.body.phone,
+        subject: req.body.last_name + ' ' + req.body.first_name,
+        html: '<h3 style="color: #BF3D47; text-decoration: underline;">Objet : ' + req.body.message_object + '</h3><br>' +
+            '<p>' + req.body.message + '</p><br>' +
+            '<span>Email : ' + req.body.email + '</span><br>' +
+            '<span>Téléphone : ' + req.body.phone + '</span>',
         date: transporter.date
         }
         transporter.sendMail(mailOptions, (error, info) => {

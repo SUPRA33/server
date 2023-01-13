@@ -38,14 +38,30 @@ const getByEmailAndPassword = async (data) => {
 }
 
 const add = async (data) => {
-
+    // Je crée la variable hashedPassword qui hash le password entré
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    const [req, err] = await db.query("INSERT INTO users (civility, last_name, first_name, date_birth, email, password, adress_1, adress_2, city, postal_code, country, role) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [data.civility, data.last_name, data.first_name, data.date_birth, data.email, hashedPassword, data.adress_1, data.adress_2, data.city, data.postal_code, data.country, data.role]);
+    
+    // J'insère dans la database toutes les données suivante dans la table users
+    const [req, err] = await db.query("INSERT INTO users (civility, last_name, first_name, date_birth, email, password, adress_1, adress_2, city, postal_code, country, role) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+    [
+        data.civility,
+        data.last_name,
+        data.first_name,
+        data.date_birth,
+        data.email,
+        hashedPassword,
+        data.adress_1,
+        data.adress_2,
+        data.city,
+        data.postal_code,
+        data.country,
+        data.role
+    ]);
+
     if (!req) {
         return null;
     }
     return getById(req.insertId);
-
 };
 
 const update = async (id, data) => {

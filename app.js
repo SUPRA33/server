@@ -3,7 +3,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const config = require('./config');
 const path = require('path');
-const fileUpload = require('express-fileupload');
 
 const routes = require('./routes');
 
@@ -14,7 +13,6 @@ app.use(cors());
 app.use(express.json());
 app.use(config.basePath, routes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(fileUpload({ createParentPath: true }));
 
 app.listen(config.port, () => {
     console.log("Server up on port " + config.port);
