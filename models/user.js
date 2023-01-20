@@ -7,7 +7,7 @@ const schema = Joi.object().keys({
     date_birth : Joi.date().required(),
     email : Joi.string().email().required(),
     password : Joi.string().min(8).required(),
-    confirmPassword: Joi.string().min(8).valid(Joi.ref('password')).required(),
+    // confirmPassword: Joi.string().min(8).valid(Joi.ref('password')).required(),
     adress_1 : Joi.string(),
     adress_2 : Joi.string(),
     city : Joi.string().required(),

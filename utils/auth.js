@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const isAdmin = () => {
     return (req, res, next) => {
         const header = req.headers.authorization;
+        console.log(header);
         if (!header) {
             res.status(403).json({message: "Vous devez être administrateur pour accéder à cette requette."});
         }

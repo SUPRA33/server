@@ -21,7 +21,7 @@ const getByEmail = async (data) => {
     }
     return user[0];
 }
-// je crée la fonction getByEmailAndPassword qui vérifie si le password correspond bien à celui hashé dans la database
+// je crée la fonction getByEmailAndPassword qui vérifie si l'adresse mail est attribuée et si le password correspond à celui hashé dans la db
 const getByEmailAndPassword = async (data) => {
     const user = await getByEmail(data);
     if (!user) { 
